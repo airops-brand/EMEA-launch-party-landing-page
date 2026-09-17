@@ -45,7 +45,7 @@ document.querySelectorAll('.why').forEach(why => {
       scrollTrigger: {
         trigger: why,
         start: 'clamp(top 70%)',
-        end: why.classList.contains('launch-intro') ? 'clamp(bottom 65%)' : 'clamp(bottom 90%)',
+        end: 'clamp(bottom 90%)',
         scrub: 0.8
       }
     });
