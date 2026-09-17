@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Upwork",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e65123f08c1abef7c4_Company%20Logo%20upwork.svg",
+    "style": "width: 5.5rem;"
+  },
+  {
+    "name": "Ramp",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e629b487b08276fb6b_Company%20Logo%20ramp.svg",
+    "style": "width: 6.125rem;"
+  },
+  {
+    "name": "Webflow",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e6b14310e056e932d4_Company%20Logo%20webflow.svg",
+    "style": "width: 7.5rem;"
+  },
+  {
+    "name": "Chime",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e52d849934500a2680_Company%20Logo%20chime.svg",
+    "style": "width: 4.1255rem;"
+  },
+  {
+    "name": "HubSpot",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e521f7ad23e74e31e3_Company%20Logo%20hubspot.svg",
+    "style": "width: 5.25rem;"
+  },
+  {
+    "name": "Carta",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e5de67bdefa6cb7281_Company%20Logo%20carta.svg",
+    "style": "width: 3.125rem;"
+  },
+  {
+    "name": "Brex",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e538ff61bc83780a1f_Company%20Logo%20brex.svg",
+    "style": "width: 5.25rem;"
+  },
+  {
+    "name": "Wiz",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e650696019781dd4f4_Company%20Logo%20wiz.svg",
+    "style": "width: 3.5rem;"
+  },
+  {
+    "name": "Ironclad",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e59e9b0b12e679b27b_Company%20Logo%20ironclad.svg",
+    "style": "width: 7.5rem;"
+  },
+  {
+    "name": "KAYAK",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e529b487b08276fb27_Company%20Logo%20kayak.svg",
+    "style": "width: 6.5rem;"
+  },
+  {
+    "name": "Gong",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e588a66fbb93272997_Company%20Logo%20gong.svg",
+    "style": "width: 5rem;"
+  },
+  {
+    "name": "monday.com",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e6bdeb5c004743c7ca_Company%20Logo%20monday.svg",
+    "style": "width: 8.625rem;"
+  },
+  {
+    "name": "Xero",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e6b6e3139db87f5ba3_Company%20Logo%20xero.svg",
+    "style": "width: 3rem; height: 3rem;"
+  },
+  {
+    "name": "Sage",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e675caf668b7f3bd28_Company%20Logo%20sage.svg",
+    "style": "width: 3.125rem;"
+  },
+  {
+    "name": "Amplitude",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e550696019781dc26c_Company%20Logo%20Amplitude.svg",
+    "style": "width: 8.3rem;"
+  },
+  {
+    "name": "ThoughtSpot",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e6db606a8dcb4b0877_Company%20Logo%20thoughtspot.svg",
+    "style": "width: 8.5rem;"
+  },
+  {
+    "name": "Drata",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e5c5e38d75ecde954b_Company%20Logo%20drata.svg",
+    "style": "width: 5.5rem;"
+  },
+  {
+    "name": "Docebo",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e588a66fbb9327297a_Company%20Logo%20docebo.svg",
+    "style": "width: 5.25rem;"
+  },
+  {
+    "name": "Lightspeed",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e61d17ee596e8c7bb1_Company%20Logo%20lightspeed.svg",
+    "style": "width: 7rem;"
+  },
+  {
+    "name": "Commvault",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e53fdfdc7b306bf3d4_Company%20Logo%20commvault.svg",
+    "style": "width: 9.18rem;"
+  },
+  {
+    "name": "Sprout Social",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e63fdfdc7b306c0683_Company%20Logo%20sproutsocial.svg",
+    "style": "width: 9.25rem;"
+  },
+  {
+    "name": "Angi",
+    "url": "https://cdn.prod.website-files.com/61fae48cb5979577435753f6/6a9c21e5f58c50011a65bb94_Company%20Logo%20angi.svg",
+    "style": "width: 3rem;"
+  }
+]

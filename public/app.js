@@ -1,3 +1,9 @@
+const logoMotionToggle = document.querySelector('.logo-motion-toggle');
+logoMotionToggle?.addEventListener('click', () => {
+  const paused = document.querySelector('.logos').classList.toggle('is-paused');
+  logoMotionToggle.setAttribute('aria-pressed', String(paused));
+  logoMotionToggle.textContent = paused ? 'Play logo animation' : 'Pause logo animation';
+});
 const dialog = document.querySelector('#registration');
 const status = document.querySelector('#form-status');
 let formStarted = false;
