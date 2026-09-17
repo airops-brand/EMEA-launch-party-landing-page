@@ -13,29 +13,32 @@ function loadRegistration() {
   if (formStarted || !config?.portalId) return;
   formStarted = true;
   status.textContent = 'Loading registration…';
+  const frame = document.querySelector('#hubspot-form');
+  frame.classList.add('hs-form-frame');
+  frame.dataset.region = config.region;
+  frame.dataset.formId = config.formId;
+  frame.dataset.portalId = config.portalId;
+  frame.setAttribute('aria-busy', 'true');
   const fail = () => {
+    frame.setAttribute('aria-busy', 'false');
     status.textContent = 'The registration form couldn’t load. Please refresh the page and try again.';
   };
   const timeout = setTimeout(fail, 20000);
+  // Register listeners before loading HubSpot so the ready event is never missed.
+  window.addEventListener('hs-form-event:on-ready', event => {
+    if (event.detail?.formId !== config.formId) return;
+    clearTimeout(timeout);
+    frame.setAttribute('aria-busy', 'false');
+    status.textContent = '';
+  });
+  window.addEventListener('hs-form-event:on-submission:success', event => {
+    if (event.detail?.formId !== config.formId) return;
+    status.textContent = 'Thank you — your registration has been received.';
+  });
   const script = document.createElement('script');
-  script.src = 'https://js.hsforms.net/forms/embed/v2.js';
-  script.async = true;
+  script.src = `https://js.hsforms.net/forms/embed/${config.portalId}.js`;
+  script.defer = true;
   script.onerror = () => { clearTimeout(timeout); fail(); };
-  script.onload = () => {
-    if (!window.hbspt?.forms) { clearTimeout(timeout); fail(); return; }
-    window.hbspt.forms.create({
-      portalId: config.portalId, formId: config.formId, region: config.region,
-      target: '#hubspot-form', css: '', cssClass: 'event-form',
-      onFormReady: () => {
-        clearTimeout(timeout);
-        document.querySelector('#form-preview').hidden = true;
-        status.textContent = '';
-      },
-      onFormSubmitted: () => {
-        status.textContent = 'Thank you — your registration has been received.';
-      }
-    });
-  };
   document.head.append(script);
 }
 document.querySelectorAll('[data-register]').forEach(button => button.addEventListener('click', () => {
