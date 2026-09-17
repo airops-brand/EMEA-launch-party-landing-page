@@ -14,6 +14,8 @@
   <link rel="preload" href="/assets/saans-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
   <script src="/config.js" defer></script>
+  <script src="/vendor/gsap.min.js" defer></script>
+  <script src="/vendor/ScrollTrigger.min.js" defer></script>
   <script src="/app.js" defer></script>
 </head>
 <body>
@@ -118,7 +120,7 @@
       </div>
     </section>
     <section class="why" aria-label="Why AirOps">
-      <p class="why-statement">The buyer journey used to unfold across touchpoints you could optimize one by one. <span>Now it happens in a single AI recommendation. Winning that moment is the most urgent challenge that brands face today.</span></p>
+      <h2 class="why-statement">The buyer journey used to unfold across touchpoints you could optimize one by one. Now it happens in a single AI recommendation. Winning that moment is the most urgent challenge that brands face today.</h2>
       <a class="button button-outline" href="https://www.airops.com/why-airops">Why AirOps</a>
     </section>
     <section class="contact" aria-labelledby="contact-title">
@@ -145,8 +147,8 @@
     <h2 id="registration-title" tabindex="-1">Join us.</h2>
     <p id="registration-description">Join us as we launch AirOps in EMEA, and get a first look at how UK brands are winning AI search.</p>
     <div id="hubspot-form"></div>
-    <div id="form-preview"><fieldset disabled aria-label="Registration form preview"><input aria-label="Name" placeholder="Name*"><input type="email" aria-label="Email" placeholder="Email*"><input aria-label="Company name" placeholder="Company name*"><input aria-label="Job title" placeholder="Job title*"><input aria-label="How did you hear about this event?" placeholder="How did you hear about this event?*"><button class="button button-green" type="button">Submit<img src="/assets/imgFrame4.svg" width="16" height="16" alt=""></button></fieldset><p class="privacy">By submitting this form, you agree to AirOps processing your information in accordance with our <a href="https://www.airops.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>, including to communicate with you about our products, services, and events.</p></div>
-    <p id="form-status" role="status">Registration opens soon.</p>
+    <div id="form-preview"><fieldset aria-label="Event registration details"><input name="name" aria-label="Name" placeholder="Name*" autocomplete="name" required><input type="email" name="email" aria-label="Email" placeholder="Email*" autocomplete="email" required><input name="company" aria-label="Company name" placeholder="Company name*" autocomplete="organization" required><input name="job_title" aria-label="Job title" placeholder="Job title*" autocomplete="organization-title" required><input name="event_source" aria-label="How did you hear about this event?" placeholder="How did you hear about this event?*" required><button class="button button-green" type="button" disabled aria-describedby="form-status">Submit<img src="/assets/imgFrame4.svg" width="16" height="16" alt=""></button></fieldset><p class="privacy">By submitting this form, you agree to AirOps processing your information in accordance with our <a href="https://www.airops.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>, including to communicate with you about our products, services, and events.</p></div>
+    <p id="form-status" role="status">Registration submission isn’t available yet. Your details have not been sent.</p>
     <noscript><p>Please enable JavaScript to register for this event.</p></noscript>
   </dialog>
 </body>

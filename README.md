@@ -14,7 +14,7 @@ Requires Node.js 20 or later. No third-party build dependencies.
 
 The event form ID is `28972c96-9ec5-4744-a757-03212c23ee66`.
 Set the verified HubSpot `portalId` and `region` in `public/config.js` to enable the official HubSpot embed. The portal on the AirOps website (21510907) returned HTTP 403 for this form; do not assume it is the right portal.
-Until configured, the dialog shows a disabled design preview and “Registration opens soon.” No entries are stored or falsely acknowledged. HubSpot controls its actual fields, consent, spam protection, and successful submission behavior.
+Until configured, visitors can type in all five modal fields, but Submit remains disabled with a clear notice. Entries stay in the current page only and are not sent or saved. HubSpot controls its actual fields, consent, spam protection, and successful submission behavior once connected.
 
 The lower “Work with us” CTA opens AirOps’ existing book-a-call page with the supplied email; it is separate from event registration.
 

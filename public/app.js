@@ -55,9 +55,33 @@ dialog.addEventListener('close', () => {
   opener?.focus();
 });
 const why = document.querySelector('.why');
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver(entries => {
-    if (entries.some(entry => entry.isIntersecting)) { why.classList.add('is-visible'); observer.disconnect(); }
-  }, { threshold: .6 });
-  observer.observe(why);
-} else why.classList.add('is-visible');
+if (why && window.gsap && window.ScrollTrigger) {
+  const statement = why.querySelector('.why-statement');
+  const text = statement.textContent.trim();
+  statement.setAttribute('aria-label', text);
+  const words = text.split(/\s+/).map(word => {
+    const span = document.createElement('span');
+    span.className = 'why-word';
+    span.setAttribute('aria-hidden', 'true');
+    span.textContent = word;
+    return span;
+  });
+  statement.replaceChildren(...words.flatMap((word, index) => index ? [document.createTextNode(' '), word] : [word]));
+  gsap.registerPlugin(ScrollTrigger);
+  // Match the homepage intro-text timeline: discrete word reveals, 0.8s scrub.
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    gsap.fromTo(words, { opacity: 0.1 }, {
+      opacity: 1,
+      duration: 0,
+      stagger: 0.25,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: why,
+        start: 'clamp(top 70%)',
+        end: 'clamp(bottom 90%)',
+        scrub: 0.8
+      }
+    });
+  });
+  document.fonts?.ready.then(() => ScrollTrigger.refresh());
+}
