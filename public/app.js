@@ -158,18 +158,35 @@ if (audienceHeading) {
   const roles = [...audienceHeading.querySelectorAll('.audience-role')];
   const toggle = document.querySelector('.audience-motion-toggle');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const titles = roles.map(role => role.textContent);
+  const typed = document.createElement('span');
+  typed.className = 'audience-typed';
+  typed.setAttribute('aria-hidden', 'true');
+  audienceHeading.append(typed);
   let index = 0;
+  let letters = 0;
+  let deleting = false;
+  let delay = 90;
   let paused = false;
   let timer;
   function scheduleAudience() {
     clearTimeout(timer);
+    audienceHeading.classList.toggle('is-typing', !motion.matches);
     if (paused || motion.matches || document.hidden || audienceHeading.matches(':hover')) return;
     timer = setTimeout(() => {
-      roles[index].classList.remove('is-active');
-      index = (index + 1) % roles.length;
-      roles[index].classList.add('is-active');
+      letters += deleting ? -1 : 1;
+      typed.textContent = titles[index].slice(0, letters);
+      delay = deleting ? 45 : 90;
+      if (!deleting && letters === titles[index].length) {
+        deleting = true;
+        delay = 1800;
+      } else if (deleting && letters === 0) {
+        deleting = false;
+        index = (index + 1) % titles.length;
+        delay = 350;
+      }
       scheduleAudience();
-    }, 3000);
+    }, delay);
   }
   toggle.addEventListener('click', () => {
     paused = !paused;
