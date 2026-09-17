@@ -36,7 +36,7 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 .event-feature-copy h2{font-size:40px;line-height:1.1;font-weight:400;letter-spacing:0}
 .event-feature-copy>p:not(.event-eyebrow){max-width:529px;font-size:16px;line-height:1.7;letter-spacing:.16px}
 .event-feature-copy--location{min-height:274px}
-.event-feature-link{display:inline-flex;align-items:center;gap:4px;padding:4px 0;font-size:16px;line-height:1;font-weight:500}
+.event-feature-link{border:0;background:none;color:inherit;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:4px 0;font-size:16px;line-height:1;font-weight:500}
 .event-feature-link img{width:16px;height:16px}.event-feature-link:hover{text-decoration:underline;text-underline-offset:4px}
 .event-feature-photo{position:relative;aspect-ratio:636/560;width:100%;overflow:hidden;border:1px solid var(--border);border-radius:8px;background:#fbfaf9}
 .event-feature-photo img{position:absolute;max-width:none;object-fit:cover}
