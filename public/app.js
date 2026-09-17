@@ -21,8 +21,8 @@ dialog.addEventListener('close', () => {
   document.body.classList.remove('modal-open');
   opener?.focus();
 });
-const why = document.querySelector('.why');
-if (why && window.gsap && window.ScrollTrigger) {
+document.querySelectorAll('.why').forEach(why => {
+  if (!window.gsap || !window.ScrollTrigger) return;
   const statement = why.querySelector('.why-statement');
   const text = statement.textContent.trim();
   statement.setAttribute('aria-label', text);
@@ -45,13 +45,13 @@ if (why && window.gsap && window.ScrollTrigger) {
       scrollTrigger: {
         trigger: why,
         start: 'clamp(top 70%)',
-        end: 'clamp(bottom 90%)',
+        end: why.classList.contains('launch-intro') ? 'clamp(bottom 65%)' : 'clamp(bottom 90%)',
         scrub: 0.8
       }
     });
   });
   document.fonts?.ready.then(() => ScrollTrigger.refresh());
-}
+});
 
 const registrationForm = document.querySelector('#form-preview');
 const registrationStatus = document.querySelector('#form-status');
