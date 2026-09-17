@@ -1,0 +1,6 @@
+{
+  "name": "emea-launch-party-landing-page",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": { "build": "node scripts/build.mjs", "dev": "node scripts/serve.mjs" }
+}
