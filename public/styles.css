@@ -57,3 +57,5 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 .event-form .hs-form-field{margin-bottom:24px}.event-form .hs-form-field>label{margin-bottom:7.2px}
 #form-preview fieldset .button{margin-top:0}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+
+.event-brand-logo{display:block;flex:none;background:#726e68;mask:var(--brand-logo) center/contain no-repeat;-webkit-mask:var(--brand-logo) center/contain no-repeat}
