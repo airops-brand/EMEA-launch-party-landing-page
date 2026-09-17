@@ -92,7 +92,7 @@ registrationForm.addEventListener('submit', async event => {
       return;
     }
     registrationComplete = true;
-    registrationStatus.textContent = 'Thank you — your registration has been received.';
+    registrationStatus.textContent = 'Thanks for your submission! Our team will get back to you soon.';
     button.textContent = 'Registered';
   } catch {
     registrationStatus.textContent = 'We couldn’t confirm your registration. Please check your connection and try again.';
