@@ -12,7 +12,7 @@ Requires Node.js 20 or later. No third-party build dependencies.
 
 ## Registration
 
-The custom five-field form submits to HubSpot's public Forms Submission API for portal `21510907` and form `28972c96-9ec5-4744-a757-03212c23ee66`. Property names supplied by the owner: `firstname`, `email`, `company`, `jobtitle`, `hdyhau_event`. The first field now asks for first name, matching its property.
+The custom five-field form submits to HubSpot's public Forms Submission API for portal `21510907` and form `28972c96-9ec5-4744-a757-03212c23ee66`. Property names supplied by the owner: `firstname`, `email`, `company`, `jobtitle`, `hdyhau_event`. The first field asks for full name at the owner’s request. Its complete value is still sent to the supplied `firstname` property; it is not split into first and last names.
 
 Native validation runs before submission. Pending requests disable fields to prevent duplicates; failed requests preserve values and allow retry. Success appears only after a successful HubSpot HTTP response. No API secret is required. The form does not assert unverified marketing subscription consent or skip HubSpot validation. Additional required HubSpot fields, CAPTCHA, or consent requirements may cause rejection and must be reconciled with the account configuration.
 
