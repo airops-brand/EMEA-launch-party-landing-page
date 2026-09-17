@@ -12,9 +12,9 @@ Requires Node.js 20 or later. No third-party build dependencies.
 
 ## Registration
 
-The registration dialog uses the owner-provided HubSpot updated-form embed for portal `21510907`, region `na1`, and form `28972c96-9ec5-4744-a757-03212c23ee66`. It loads once, when the dialog is opened, using `https://js.hsforms.net/forms/embed/21510907.js` and an `hs-form-frame` container.
+The original five-field design is restored: full name, work email, company, job title, and event source. Inputs are editable, but submission is disabled pending verification of HubSpot field mappings and consent requirements. No values are transmitted or saved. The supplied HubSpot identifiers remain in `public/config.js`; the embed is not loaded because it overrides the requested layout.
 
-HubSpot controls the live fields, styling inside the embedded form, consent, spam protection, submission, and thank-you behavior. The page listens for the matching form's ready and successful-submission events. Loading failures display a notice, and no placeholder fields collect unsent entries.
+To enable registration, add or confirm the corresponding fields in HubSpot form `28972c96-9ec5-4744-a757-03212c23ee66` under portal `21510907`, and verify internal property names, required fields, consent, and submission behavior before connecting the custom form.
 
 The lower “Work with us” CTA opens AirOps’ existing book-a-call page with the supplied email; it is separate from event registration.
 

@@ -146,8 +146,14 @@
     <button class="close-dialog" aria-label="Close registration" type="button">×</button>
     <h2 id="registration-title" tabindex="-1">Join us.</h2>
     <p id="registration-description">Join us as we launch AirOps in EMEA, and get a first look at how UK brands are winning AI search.</p>
-    <div id="hubspot-form"></div>
-    <p id="form-status" role="status"></p>
+    <div id="form-preview"><fieldset aria-label="Event registration details">
+<div class="registration-field"><label for="registration-name">What is your full name?<span class="required-mark" aria-hidden="true">*</span></label><input id="registration-name" name="name" type="text" placeholder="John Smith" autocomplete="name" required></div>
+<div class="registration-field"><label for="registration-email">What is your work email?<span class="required-mark" aria-hidden="true">*</span></label><input id="registration-email" name="email" type="email" placeholder="name@mycompany.com" autocomplete="email" required></div>
+<div class="registration-field"><label for="registration-company">What is your company name?<span class="required-mark" aria-hidden="true">*</span></label><input id="registration-company" name="company" type="text" placeholder="Company name" autocomplete="organization" required></div>
+<div class="registration-field"><label for="registration-job_title">What is your job title?<span class="required-mark" aria-hidden="true">*</span></label><input id="registration-job_title" name="job_title" type="text" placeholder="Marketing Director" autocomplete="organization-title" required></div>
+<div class="registration-field"><label for="registration-event_source">How did you hear about this event?<span class="required-mark" aria-hidden="true">*</span></label><input id="registration-event_source" name="event_source" type="text" placeholder="Tell us how you found us" autocomplete="off" required></div>
+<button class="button button-green" type="button" disabled aria-describedby="form-status">Submit<img src="/assets/imgFrame4.svg" width="16" height="16" alt=""></button></fieldset><p class="privacy">By submitting this form, you agree to AirOps processing your information in accordance with our <a href="https://www.airops.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>, including to communicate with you about our products, services, and events.</p></div>
+    <p id="form-status" role="status">Registration submission isn’t available yet. Your details have not been sent.</p>
     <noscript><p>Please enable JavaScript to register for this event.</p></noscript>
   </dialog>
 </body>
