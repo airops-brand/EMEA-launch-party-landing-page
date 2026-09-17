@@ -103,3 +103,52 @@ registrationForm.addEventListener('submit', async event => {
     registrationForm.setAttribute('aria-busy', 'false');
   }
 });
+
+const venueGallery = document.querySelector('.location-gallery');
+if (venueGallery) {
+  const slides = [...venueGallery.querySelectorAll('.location-gallery-slide')];
+  const track = venueGallery.querySelector('.location-gallery-track');
+  const controls = venueGallery.querySelector('.location-gallery-controls');
+  const dotsContainer = venueGallery.querySelector('.location-gallery-dots');
+  const toggle = venueGallery.querySelector('.location-gallery-toggle');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let active = 0;
+  let paused = reducedMotion.matches;
+  let timer;
+  const dots = slides.map((slide, index) => {
+    slide.setAttribute('aria-label', `${index + 1} of ${slides.length}`);
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'location-gallery-dot';
+    dot.setAttribute('aria-label', `Show venue photo ${index + 1}`);
+    dot.addEventListener('click', () => { show(index); schedule(); });
+    dotsContainer.append(dot);
+    return dot;
+  });
+  function show(index) {
+    active = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${active * 100}%)`;
+    slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== active)));
+    dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === active)));
+  }
+  function schedule() {
+    clearTimeout(timer);
+    if (slides.length < 2 || paused || document.hidden || venueGallery.matches(':hover') || venueGallery.contains(document.activeElement)) return;
+    timer = setTimeout(() => { show(active + 1); schedule(); }, 5000);
+  }
+  function updateToggle() {
+    toggle.setAttribute('aria-pressed', String(paused));
+    toggle.textContent = paused ? 'Play slideshow' : 'Pause slideshow';
+  }
+  toggle.addEventListener('click', () => { paused = !paused; updateToggle(); schedule(); });
+  venueGallery.addEventListener('mouseenter', () => clearTimeout(timer));
+  venueGallery.addEventListener('mouseleave', schedule);
+  venueGallery.addEventListener('focusin', () => clearTimeout(timer));
+  venueGallery.addEventListener('focusout', () => setTimeout(schedule, 0));
+  document.addEventListener('visibilitychange', schedule);
+  reducedMotion.addEventListener('change', () => { paused = reducedMotion.matches; updateToggle(); schedule(); });
+  controls.hidden = slides.length < 2;
+  show(0);
+  updateToggle();
+  schedule();
+}
