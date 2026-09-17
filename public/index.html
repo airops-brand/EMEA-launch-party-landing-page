@@ -105,8 +105,14 @@
     <section class="event-feature" aria-labelledby="audience-title">
       <div class="event-feature-inner">
         <div class="event-feature-copy">
-          <p class="event-eyebrow">This event is for the most ambitious</p>
-          <h2 id="audience-title">The CMOs, the marketing leaders, the growth leaders...</h2>
+          <p class="event-eyebrow">This event is for the most ambitious:</p>
+          <h2 id="audience-title" class="audience-rotator" aria-label="CMOs, Marketing leaders, Growth leaders, Content leaders">
+            <span class="audience-role is-active" aria-hidden="true">CMOs</span>
+            <span class="audience-role" aria-hidden="true">Marketing leaders</span>
+            <span class="audience-role" aria-hidden="true">Growth leaders</span>
+            <span class="audience-role" aria-hidden="true">Content leaders</span>
+          </h2>
+          <button class="audience-motion-toggle" type="button" aria-pressed="false">Pause title animation</button>
           <p>Meet the marketing and growth leaders shaping what’s next across the UK and EMEA. Connect with peers navigating the same challenges, swap ideas, and leave with fresh perspectives to bring back to your team.</p>
           <button class="event-feature-link" type="button" data-register>Register for event<img src="/assets/arrow-right.svg" width="16" height="16" alt=""></button>
         </div>

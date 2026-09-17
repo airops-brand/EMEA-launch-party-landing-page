@@ -152,3 +152,34 @@ if (venueGallery) {
   updateToggle();
   schedule();
 }
+
+const audienceHeading = document.querySelector('.audience-rotator');
+if (audienceHeading) {
+  const roles = [...audienceHeading.querySelectorAll('.audience-role')];
+  const toggle = document.querySelector('.audience-motion-toggle');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let paused = false;
+  let timer;
+  function scheduleAudience() {
+    clearTimeout(timer);
+    if (paused || motion.matches || document.hidden || audienceHeading.matches(':hover')) return;
+    timer = setTimeout(() => {
+      roles[index].classList.remove('is-active');
+      index = (index + 1) % roles.length;
+      roles[index].classList.add('is-active');
+      scheduleAudience();
+    }, 3000);
+  }
+  toggle.addEventListener('click', () => {
+    paused = !paused;
+    toggle.setAttribute('aria-pressed', String(paused));
+    toggle.textContent = paused ? 'Play title animation' : 'Pause title animation';
+    scheduleAudience();
+  });
+  audienceHeading.addEventListener('mouseenter', () => clearTimeout(timer));
+  audienceHeading.addEventListener('mouseleave', scheduleAudience);
+  document.addEventListener('visibilitychange', scheduleAudience);
+  motion.addEventListener('change', scheduleAudience);
+  scheduleAudience();
+}
