@@ -40,7 +40,7 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 .event-feature-link img{width:16px;height:16px}.event-feature-link:hover{text-decoration:underline;text-underline-offset:4px}
 .event-feature-photo{position:relative;aspect-ratio:636/560;width:100%;overflow:hidden;border:1px solid var(--border);border-radius:8px;background:#fbfaf9}
 .event-feature-photo img{position:absolute;max-width:none;object-fit:cover}
-.event-feature-photo--audience img{width:133.9623%;height:116.6071%;left:-27.5157%;top:-10%}
+.event-feature-photo--audience img{width:100%;height:100%;left:0;top:0;object-position:45% center}
 .event-feature-photo--location img{width:155.1327%;height:117.5164%;left:-27.6667%;top:-8.9911%}
 .event-feature-photo--networking img{width:130.9748%;height:108.2143%;left:-13.0503%;top:-5.7143%}
 @media(max-width:1200px){.event-feature-inner{padding:88px 40px;gap:56px}.event-feature-copy h2{font-size:34px}.event-feature-copy--location{min-height:0}}
