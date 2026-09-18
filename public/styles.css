@@ -109,3 +109,9 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 .party-gallery-controls .party-toggle{width:auto;border-radius:24px;padding:0 20px;font-size:13px}
 .party-gallery-controls button:hover{background:#e7e4e0}
 @media(max-width:600px){.party-gallery{padding:40px 0 32px}}
+
+.event-sticky-nav{position:fixed;z-index:20;top:16px;left:50%;width:calc(100% - 32px);max-width:1040px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 20px;background:#fffffff5;border:1px solid #d8d6d3;border-radius:20px;backdrop-filter:blur(12px);opacity:0;visibility:hidden;transform:translate(-50%,-16px);pointer-events:none;transition:opacity .25s ease,transform .25s ease,visibility .25s}
+.event-sticky-nav.is-visible{opacity:1;visibility:visible;transform:translate(-50%,0);pointer-events:auto}
+.event-sticky-logo{width:112px;height:auto}
+.event-sticky-nav .button{gap:8px;min-height:48px;padding:16px 20px}
+@media(max-width:600px){.event-sticky-nav{top:8px;width:calc(100% - 16px);padding:10px 12px;border-radius:16px;gap:12px}.event-sticky-logo{width:88px}.event-sticky-nav .button{font-size:14px;padding:14px 12px;min-height:44px}}

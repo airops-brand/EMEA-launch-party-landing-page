@@ -1,5 +1,23 @@
 // Keep decorative pointer effects separate from the registration interaction.
 const hero = document.querySelector('.hero');
+const stickyNav = document.querySelector('.event-sticky-nav');
+if (hero && stickyNav) {
+  let navFrame = 0;
+  function updateStickyNav() {
+    navFrame = 0;
+    const visible = hero.getBoundingClientRect().bottom <= 0;
+    stickyNav.classList.toggle('is-visible', visible);
+    stickyNav.inert = !visible;
+    stickyNav.setAttribute('aria-hidden', String(!visible));
+  }
+  function scheduleStickyNav() {
+    if (!navFrame) navFrame = requestAnimationFrame(updateStickyNav);
+  }
+  window.addEventListener('scroll', scheduleStickyNav, { passive: true });
+  window.addEventListener('resize', scheduleStickyNav);
+  window.addEventListener('pageshow', scheduleStickyNav);
+  updateStickyNav();
+}
 const heroPhoto = hero?.querySelector('.hero-photo');
 const heroButton = hero?.querySelector('[data-register]');
 if (heroPhoto && heroButton) {
