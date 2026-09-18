@@ -76,6 +76,9 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 .audience-role{grid-area:1/1;opacity:0;pointer-events:none}
 .audience-role.is-active{opacity:1}
 .audience-typed{display:none;grid-area:1/1}
+.audience-typed::after{content:"|";display:inline-block;margin-left:.06em;font-weight:300;animation:audience-caret 1s steps(1,end) infinite}
+@keyframes audience-caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.audience-typed::after{animation:none}}
 .audience-rotator.is-typing .audience-role{opacity:0}
 .audience-rotator.is-typing .audience-typed{display:block}
 .audience-motion-toggle{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
