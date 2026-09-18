@@ -73,16 +73,18 @@ dialog.addEventListener('close', () => {
 document.querySelectorAll('.why').forEach(why => {
   if (!window.gsap || !window.ScrollTrigger) return;
   const statement = why.querySelector('.why-statement');
-  const text = statement.textContent.trim();
-  statement.setAttribute('aria-label', text);
-  const words = text.split(/\s+/).map(word => {
+  const text = [...statement.childNodes].map(node => node.nodeName === 'BR' ? '\n' : node.textContent).join('').trim();
+  statement.setAttribute('aria-label', text.replace(/\s+/g, ' '));
+  const tokens = text.match(/\n|[^\s]+/g).map(word => {
+    if (word === '\n') return document.createElement('br');
     const span = document.createElement('span');
     span.className = 'why-word';
     span.setAttribute('aria-hidden', 'true');
     span.textContent = word;
     return span;
   });
-  statement.replaceChildren(...words.flatMap((word, index) => index ? [document.createTextNode(' '), word] : [word]));
+  statement.replaceChildren(...tokens.flatMap((word, index) => index && word.nodeName !== 'BR' && tokens[index - 1].nodeName !== 'BR' ? [document.createTextNode(' '), word] : [word]));
+  const words = tokens.filter(node => node.nodeName !== 'BR');
   gsap.registerPlugin(ScrollTrigger);
   // Match the homepage intro-text timeline: discrete word reveals, 0.8s scrub.
   gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
