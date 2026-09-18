@@ -96,6 +96,9 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 @media(prefers-reduced-motion:reduce){.hero .button-light::before{animation:none;--cta-stroke-angle:135deg}.hero .button-light:hover{transform:none}}
 
 .party-gallery{padding:80px 0 48px;background:var(--paper);overflow:hidden}
+.launch-intro .party-gallery{width:calc(100% + 64px);max-width:none;margin:24px -32px 0;padding:0}
+.why.launch-intro{padding-bottom:64px}
+@media(max-width:600px){.launch-intro .party-gallery{width:calc(100% + 48px);margin-inline:-24px}.why.launch-intro{padding-bottom:40px}}
 .party-slider{display:flex;align-items:center;gap:16px;overflow-x:auto;padding:24px;scroll-snap-type:x mandatory}
 .party-slide{flex:0 0 min(65vw,420px);width:min(65vw,420px);aspect-ratio:1;object-fit:cover;border-radius:8px;scroll-snap-align:center;user-select:none}
 .party-slider.is-animated{position:relative;display:block;height:clamp(300px,42vw,760px);padding:0;overflow:hidden;touch-action:pan-y;cursor:grab;scroll-snap-type:none}
