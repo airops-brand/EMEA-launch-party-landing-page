@@ -202,3 +202,101 @@ if (audienceHeading) {
   motion.addEventListener('change', scheduleAudience);
   scheduleAudience();
 }
+
+// Original scale-slider: position determines each photo's size, so the loop is seamless.
+const partySlider = document.querySelector('.party-slider');
+if (partySlider) {
+  const photos = [...partySlider.querySelectorAll('.party-slide')];
+  const controls = document.querySelector('.party-gallery-controls');
+  const pause = controls.querySelector('.party-toggle');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let phase = 0, velocity = 0, frame = 0, lastTime = 0;
+  let visible = false, paused = false, hovering = false, focused = false;
+  let drag = null, width = 0, height = 0, slots = 6;
+  let lastScroll = window.scrollY;
+  const wrap = value => ((value % photos.length) + photos.length) % photos.length;
+  function render() {
+    if (motion.matches) return;
+    const curve = 0.3;
+    const unit = (width + 100) / Math.expm1(curve * slots);
+    photos.forEach((photo, index) => {
+      const position = wrap(index - phase) - 1;
+      const shown = position <= slots + 0.5;
+      photo.style.visibility = shown ? 'visible' : 'hidden';
+      if (!shown) return;
+      const x = unit * Math.expm1(curve * position) - 45;
+      const size = Math.max(24, unit * (Math.exp(curve * (position + 1)) - Math.exp(curve * position)) - 12);
+      photo.style.transform = `translate3d(${x}px,${(height - size) / 2}px,0) scale(${size / 400})`;
+    });
+  }
+  function tick(time) {
+    frame = 0;
+    const dt = Math.min((time - lastTime) / 1000 || 0, 0.05);
+    lastTime = time;
+    if (!drag) {
+      phase = wrap(phase + ((paused || hovering || focused ? 0 : 0.18) + velocity) * dt);
+      velocity *= Math.exp(-4 * dt);
+    }
+    render();
+    if (visible && !document.hidden && !motion.matches && (!paused && !hovering && !focused || Math.abs(velocity) > 0.001)) frame = requestAnimationFrame(tick);
+  }
+  function start() {
+    if (frame || !visible || document.hidden || motion.matches) return;
+    lastTime = performance.now();
+    frame = requestAnimationFrame(tick);
+  }
+  function configure() {
+    cancelAnimationFrame(frame); frame = 0; velocity = 0; drag = null;
+    partySlider.classList.toggle('is-animated', !motion.matches);
+    partySlider.classList.remove('is-dragging');
+    photos.forEach(photo => photo.removeAttribute('style'));
+    pause.hidden = motion.matches;
+    width = partySlider.clientWidth; height = partySlider.clientHeight;
+    slots = width < 600 ? 3 : 6;
+    render(); start();
+  }
+  function nudge(direction) {
+    if (motion.matches) return partySlider.scrollBy({ left: direction * partySlider.clientWidth * 0.7, behavior: 'instant' });
+    velocity = direction * 3; start();
+  }
+  controls.querySelector('.party-prev').addEventListener('click', () => nudge(-1));
+  controls.querySelector('.party-next').addEventListener('click', () => nudge(1));
+  pause.addEventListener('click', () => {
+    paused = !paused; velocity = 0;
+    pause.textContent = paused ? 'Play photos' : 'Pause photos';
+    pause.setAttribute('aria-pressed', String(paused)); start();
+  });
+  partySlider.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); nudge(event.key === 'ArrowRight' ? 1 : -1); }
+  });
+  partySlider.addEventListener('pointerdown', event => {
+    if (motion.matches || event.button !== 0) return;
+    drag = { id: event.pointerId, x: event.clientX, time: performance.now() };
+    velocity = 0; partySlider.setPointerCapture(event.pointerId); partySlider.classList.add('is-dragging');
+  });
+  partySlider.addEventListener('pointermove', event => {
+    if (!drag || drag.id !== event.pointerId) return;
+    const now = performance.now();
+    const delta = (drag.x - event.clientX) * slots / width;
+    phase = wrap(phase + delta);
+    velocity = Math.max(-5, Math.min(5, delta / Math.max(0.016, (now - drag.time) / 1000)));
+    drag.x = event.clientX; drag.time = now; render();
+  });
+  function endDrag() { drag = null; partySlider.classList.remove('is-dragging'); start(); }
+  partySlider.addEventListener('pointerup', endDrag);
+  partySlider.addEventListener('pointercancel', () => { velocity = 0; endDrag(); });
+  partySlider.addEventListener('lostpointercapture', endDrag);
+  partySlider.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') hovering = true; });
+  partySlider.addEventListener('pointerleave', () => { hovering = false; start(); });
+  partySlider.addEventListener('focusin', () => { focused = true; });
+  partySlider.addEventListener('focusout', () => { focused = false; start(); });
+  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; start(); }, { threshold: 0.05 }).observe(partySlider);
+  new ResizeObserver(configure).observe(partySlider);
+  document.addEventListener('visibilitychange', start);
+  window.addEventListener('scroll', () => {
+    const delta = window.scrollY - lastScroll; lastScroll = window.scrollY;
+    if (visible && !paused && !motion.matches && !drag) { velocity = Math.max(-3, Math.min(3, velocity + delta * 0.006)); start(); }
+  }, { passive: true });
+  motion.addEventListener('change', configure);
+  controls.hidden = false; configure();
+}

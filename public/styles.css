@@ -94,3 +94,15 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 .hero-spotlight .hero-photo{opacity:.22}
 @media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.hero.has-pointer .hero-spotlight{opacity:1}.hero .button-light{transition:background .2s,transform .2s,translate .22s ease-out}}
 @media(prefers-reduced-motion:reduce){.hero .button-light::before{animation:none;--cta-stroke-angle:135deg}.hero .button-light:hover{transform:none}}
+
+.party-gallery{padding:80px 0 48px;background:var(--paper);overflow:hidden}
+.party-slider{display:flex;align-items:center;gap:16px;overflow-x:auto;padding:24px;scroll-snap-type:x mandatory}
+.party-slide{flex:0 0 min(65vw,420px);width:min(65vw,420px);aspect-ratio:1;object-fit:cover;border-radius:8px;scroll-snap-align:center;user-select:none}
+.party-slider.is-animated{position:relative;display:block;height:clamp(300px,42vw,760px);padding:0;overflow:hidden;touch-action:pan-y;cursor:grab;scroll-snap-type:none}
+.party-slider.is-animated.is-dragging{cursor:grabbing}
+.party-slider.is-animated .party-slide{position:absolute;left:0;top:0;width:400px;height:400px;max-width:none;transform-origin:0 0;will-change:transform}
+.party-gallery-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:16px}
+.party-gallery-controls button{border:1px solid var(--border);border-radius:50%;width:44px;height:44px;background:transparent;color:var(--ink);font-size:20px}
+.party-gallery-controls .party-toggle{width:auto;border-radius:24px;padding:0 20px;font-size:13px}
+.party-gallery-controls button:hover{background:#e7e4e0}
+@media(max-width:600px){.party-gallery{padding:40px 0 32px}}
