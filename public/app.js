@@ -1,3 +1,52 @@
+// Keep decorative pointer effects separate from the registration interaction.
+const hero = document.querySelector('.hero');
+const heroPhoto = hero?.querySelector('.hero-photo');
+const heroButton = hero?.querySelector('[data-register]');
+if (heroPhoto && heroButton) {
+  const pointerMotion = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  const spotlight = document.createElement('div');
+  spotlight.className = 'hero-spotlight';
+  spotlight.setAttribute('aria-hidden', 'true');
+  const spotlightPhoto = heroPhoto.cloneNode();
+  spotlightPhoto.alt = '';
+  spotlight.append(spotlightPhoto);
+  heroPhoto.after(spotlight);
+  let frame = 0;
+  let pointer;
+  function resetHeroPointer() {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    hero.classList.remove('has-pointer');
+    heroButton.style.removeProperty('translate');
+  }
+  function paintHeroPointer() {
+    frame = 0;
+    if (!pointerMotion.matches || document.querySelector('dialog[open]')) return resetHeroPointer();
+    const rect = hero.getBoundingClientRect();
+    spotlight.style.setProperty('--spot-x', `${pointer.x - rect.left}px`);
+    spotlight.style.setProperty('--spot-y', `${pointer.y - rect.top}px`);
+    hero.classList.add('has-pointer');
+    // Layout coordinates stay stable while the button moves toward the pointer.
+    const buttonX = rect.left + heroButton.offsetLeft + heroButton.offsetWidth / 2;
+    const buttonY = rect.top + heroButton.offsetTop + heroButton.offsetHeight / 2;
+    const dx = pointer.x - buttonX;
+    const dy = pointer.y - buttonY;
+    const nearby = Math.abs(dx) < heroButton.offsetWidth / 2 + 35 && Math.abs(dy) < heroButton.offsetHeight / 2 + 35;
+    heroButton.style.translate = nearby ? `${Math.max(-6, Math.min(6, dx * 0.08))}px ${Math.max(-4, Math.min(4, dy * 0.08))}px` : '0px 0px';
+  }
+  hero.addEventListener('pointermove', event => {
+    if (!pointerMotion.matches || event.pointerType === 'touch') return;
+    pointer = { x: event.clientX, y: event.clientY };
+    if (!frame) frame = requestAnimationFrame(paintHeroPointer);
+  });
+  hero.addEventListener('pointerleave', resetHeroPointer);
+  heroButton.addEventListener('click', resetHeroPointer);
+  heroButton.addEventListener('focus', resetHeroPointer);
+  pointerMotion.addEventListener('change', resetHeroPointer);
+  window.addEventListener('blur', resetHeroPointer);
+  window.addEventListener('scroll', resetHeroPointer, { passive: true });
+}
+
 const logoMotionToggle = document.querySelector('.logo-motion-toggle');
 logoMotionToggle?.addEventListener('click', () => {
   const paused = document.querySelector('.logos').classList.toggle('is-paused');
