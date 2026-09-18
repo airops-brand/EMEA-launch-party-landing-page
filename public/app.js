@@ -211,9 +211,10 @@ if (audienceHeading) {
   const typed = document.createElement('span');
   typed.className = 'audience-typed';
   typed.setAttribute('aria-hidden', 'true');
+  typed.textContent = titles[0].slice(0, 1);
   audienceHeading.append(typed);
   let index = 0;
-  let letters = 0;
+  let letters = 1;
   let deleting = false;
   let delay = 90;
   let paused = false;
@@ -229,9 +230,10 @@ if (audienceHeading) {
       if (!deleting && letters === titles[index].length) {
         deleting = true;
         delay = 1800;
-      } else if (deleting && letters === 0) {
+      } else if (deleting && letters === 1) {
         deleting = false;
         index = (index + 1) % titles.length;
+        typed.textContent = titles[index].slice(0, 1);
         delay = 350;
       }
       scheduleAudience();
