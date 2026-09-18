@@ -115,3 +115,5 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 .event-sticky-logo{width:112px;height:auto}
 .event-sticky-nav .button{gap:8px;min-height:48px;padding:16px 20px}
 @media(max-width:600px){.event-sticky-nav{top:8px;width:calc(100% - 16px);padding:10px 12px;border-radius:16px;gap:12px}.event-sticky-logo{width:88px}.event-sticky-nav .button{font-size:14px;padding:14px 12px;min-height:44px}}
+
+@media(min-width:801px){.event-feature-inner--reversed{grid-template-columns:minmax(0,636fr) minmax(0,540fr)}}

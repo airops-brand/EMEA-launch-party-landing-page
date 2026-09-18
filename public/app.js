@@ -88,7 +88,7 @@ dialog.addEventListener('close', () => {
   document.body.classList.remove('modal-open');
   opener?.focus();
 });
-document.querySelectorAll('.why').forEach(why => {
+document.querySelectorAll('.why:not(.launch-intro)').forEach(why => {
   if (!window.gsap || !window.ScrollTrigger) return;
   const statement = why.querySelector('.why-statement');
   const text = [...statement.childNodes].map(node => node.nodeName === 'BR' ? '\n' : node.textContent).join('').trim();
