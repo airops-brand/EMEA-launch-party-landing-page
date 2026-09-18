@@ -32,7 +32,7 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 .event-feature{background:#fff;border-top:1px solid var(--border)}
 .event-feature-inner{max-width:1440px;margin:0 auto;padding:119px 72px 120px;display:grid;grid-template-columns:minmax(0,540fr) minmax(0,636fr);gap:120px;align-items:center}
 .event-feature-copy{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
-.event-feature-copy .event-eyebrow{font-size:13px;font-weight:600;line-height:1.4;letter-spacing:1.3px;text-transform:uppercase;color:#938e88}
+.event-feature-copy .event-eyebrow,.launch-intro .event-eyebrow{font-size:13px;font-weight:600;line-height:1.4;letter-spacing:1.3px;text-transform:uppercase;color:#938e88}
 .event-feature-copy h2{font-size:40px;line-height:1.1;font-weight:400;letter-spacing:0}
 .event-feature-copy>p:not(.event-eyebrow){max-width:529px;font-size:16px;line-height:1.7;letter-spacing:.16px}
 .event-feature-copy--location{min-height:274px}
@@ -82,7 +82,10 @@ dialog{border:1px solid var(--border);border-radius:16px;padding:40px;width:min(
 .audience-motion-toggle:focus-visible{position:static;width:auto;height:auto;clip-path:none;padding:6px 8px;border:1px solid var(--border);background:var(--paper);color:var(--body);font-size:12px}
 @media(prefers-reduced-motion:reduce){.audience-role{transition:none;transform:none}.audience-rotator{display:block}.audience-role{display:inline;opacity:1}.audience-role:not(:last-child)::after{content:", "}.audience-motion-toggle{display:none}}
 
-.launch-intro .why-statement{max-width:854px;letter-spacing:0}
+.launch-intro{text-align:center}
+.launch-intro .audience-rotator{max-width:100%;font-size:clamp(32px,6vw,48px);line-height:1.15;font-weight:400;letter-spacing:-.5px}
+.launch-intro .why-statement{max-width:680px;font-size:24px;line-height:1.5;letter-spacing:0}
+@media(max-width:600px){.launch-intro .why-statement{font-size:20px}}
 
 /* A traveling highlight frames the hero registration CTA without covering it. */
 @property --cta-stroke-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
