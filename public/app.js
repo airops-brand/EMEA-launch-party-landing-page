@@ -124,6 +124,8 @@ document.querySelectorAll('.why:not(.launch-intro)').forEach(why => {
 
 const registrationForm = document.querySelector('#form-preview');
 const registrationStatus = document.querySelector('#form-status');
+const registrationTitle = document.querySelector('#registration-title');
+const registrationDescription = document.querySelector('#registration-description');
 const registrationFields = ['firstname', 'email', 'company', 'jobtitle', 'hdyhau_event'];
 let registrationPending = false;
 let registrationComplete = false;
@@ -140,7 +142,6 @@ registrationForm.addEventListener('submit', async event => {
     return;
   }
   const fieldset = registrationForm.querySelector('fieldset');
-  const button = registrationForm.querySelector('[type="submit"]');
   registrationPending = true;
   fieldset.disabled = true;
   registrationForm.setAttribute('aria-busy', 'true');
@@ -161,8 +162,12 @@ registrationForm.addEventListener('submit', async event => {
       return;
     }
     registrationComplete = true;
-    registrationStatus.textContent = 'Thanks for your submission! Our team will get back to you soon.';
-    button.textContent = 'Registered';
+    registrationForm.hidden = true;
+    registrationStatus.textContent = '';
+    registrationTitle.textContent = 'Thanks—your RSVP request is in.';
+    registrationDescription.textContent = 'Our team will review it and follow up soon with confirmation and venue details.';
+    dialog.classList.add('is-complete');
+    registrationTitle.focus();
   } catch {
     registrationStatus.textContent = 'We couldn’t confirm your registration. Please check your connection and try again.';
   } finally {
